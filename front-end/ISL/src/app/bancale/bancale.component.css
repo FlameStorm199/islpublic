@@ -1,0 +1,32 @@
+.main-div {
+    display: flex;
+    flex-direction: row;
+    height: 84vh;
+    background-image: "";
+    background-color: #f4eae1;
+    font-family: 'Rubik' !important;
+}
+
+.dettagli {
+    margin-top: 8vh;
+    margin-left: 33%;
+}
+
+#dettagli_titolo {
+    padding-left: 34%;
+    font-weight: bold;
+}
+
+.colonna1 {
+    text-align: right;
+    width: 200px;
+    text-decoration: underline;
+}
+
+.colonna2 {
+    padding-left: 10px;
+}
+
+#tabella_dettagli {
+    margin-top: 15px;
+}

@@ -1,0 +1,45 @@
+.main-div {
+    display: flex;
+    flex-direction: row;
+    height: 84vh;
+    background-image: "";
+    background-color: #f4eae1;
+    font-family: 'Rubik' !important;
+}
+
+#functions-div {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-areas:
+        'ricezione-materiale spedizione-materiale'
+        'conteggio-materiale spostamento-materiale';
+}
+
+.materiale {
+    background-color: transparent;
+    border: 2px #605e5c solid;
+    border-radius: 20px;
+    display: flex;
+    height: 300px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 150px 100px;
+    transition: 200ms;
+}
+
+.materiale:hover {
+    background-color: #e7730e;
+    transform: scale(1.03);
+    color: black;
+    /* mettere filter: invert(100%); SOLO allimmagine con classe .icon-materiale */
+}
+
+.icon-materiale {
+    width: 190px;
+    height: 190px;
+    filter: brightness(0);
+}

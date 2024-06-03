@@ -1,0 +1,48 @@
+<div class="main-div">
+    <div id="mess-div">
+      <div style="font-size: 30; font-weight: bold;">Gestione Utenti</div>
+        Ricerca un utente:
+    </div>
+    <div id="man-div">
+        <div class="form-floating mb-3" [formGroup]="formData">
+            <input 
+                    type="text" 
+                    name="cerca" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Ricerca un utente..." 
+                    autocomplete="off" 
+                    formControlName="cerca"
+                    (keyup)="filterUsers()"
+                >
+        </div>
+        <div>
+            <input type="button" id="add" value="Aggiungi utente" (click)="aggiungiUtente()"/>
+        </div>
+    </div>
+    <div id="task-div">
+        <table>
+          <tr>
+            <th>USERNAME</th>
+            <th>NOME</th>
+            <th>COGNOME</th>
+            <th>DATA DI NASCITA</th>
+            <th>LUOGO DI NASCITA</th>
+            <th>TELEFONO</th>
+            <th>MAGAZZINO</th>
+            <th>AZIONI</th>
+          </tr>
+          <tr *ngFor="let user of filteredUsers">
+            <td [routerLink]="['/user', user.username]">{{user.username}}</td>
+            <td [routerLink]="['/user', user.username]">{{user.nome}}</td>
+            <td [routerLink]="['/user', user.username]">{{user.cognome}}</td>
+            <td [routerLink]="['/user', user.username]">{{user.dataNascita | date : 'dd/MM/yyyy'}}</td>
+            <td [routerLink]="['/user', user.username]">{{user.luogoNascita}}</td>
+            <td [routerLink]="['/user', user.username]">{{user.telefono}}</td>
+            <td [routerLink]="['/user', user.username]">{{user.magazzino}}</td>
+            <td><input type="button" value="⠀⠀" class="modifica" (click)="modificaUtente(user.username)"/>
+            <input type="button" value="⠀⠀" class="rimuovi" (click)="rimuoviUtente(user.username)"/></td>
+          </tr>
+        </table>
+      </div>
+</div>

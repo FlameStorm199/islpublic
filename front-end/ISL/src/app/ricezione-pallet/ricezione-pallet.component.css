@@ -1,0 +1,28 @@
+#title{
+    font-size: 40px;
+    font-weight: bold;
+}
+#container{
+    margin: 50px;
+}
+.main-div {
+    display: flex;
+    flex-direction: column;
+    height: 84vh;
+    background-image: "";
+    background-color: #f4eae1;
+    font-family: 'Rubik' !important;
+}
+
+.btn-primary{
+    background-color: #FA7606;
+    border: 0;
+}
+
+#inserimento {
+    margin-left: 10%;
+}
+
+#img-qr{
+    width: 10vw;
+}

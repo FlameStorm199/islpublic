@@ -1,0 +1,38 @@
+<div class="main-div">
+    <div class="dettagli">
+        <span id="dettagli_titolo">Dettagli dell'area:</span> <br>
+        <table id="tabella_dettagli">
+            <tr>
+                <td class="colonna1">Codice magazzino:</td>
+                <td class="colonna2">{{area.codiceMagazzino}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Codice area:</td>
+                <td class="colonna2">{{area.codiceArea}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Tipologia area:</td>
+                <td class="colonna2">{{area.tipologiaArea}}</td>
+            </tr>
+        </table>
+        <br>
+    </div>
+    <div class="bancali">
+        <div id="titolo_bancali">Scaffali nell'area:</div><br>
+        <div class="task-div">
+            <table>
+                <tr>
+                    <th>CODICE MAGAZZINO</th>
+                    <th>CODICE AREA</th>
+                    <th>CODICE SCAFFALE</th>
+                </tr>
+                <tr *ngFor="let scaffale of scaffali" [routerLink]="['/scaffale', area.codiceArea, scaffale.codiceScaffale]">
+                    <td>{{scaffale.codiceMagazzino}}</td>
+                    <td>{{scaffale.codiceArea}}
+                    </td>
+                    <td>{{scaffale.codiceScaffale}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

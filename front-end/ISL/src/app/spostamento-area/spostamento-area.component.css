@@ -1,0 +1,96 @@
+.main-div {
+    display: flex;
+    flex-direction: row;
+    height: 84vh;
+    background-image: "";
+    background-color: #f4eae1;
+    font-family: 'Rubik' !important;
+}
+
+#task-div {
+    height: 75%;
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 4em;
+    margin-left: -2em;
+}
+
+#task-div table {
+    /* width: 95%; */
+    border-collapse: collapse;
+    background-color: #faf5f1;
+    /* margin-top: 100px; */
+}
+
+#task-div td {
+    padding: 10px;
+    text-align: left;
+}
+
+.inserimento{
+    position: absolute;
+    margin-left: 40px;
+    margin-top: 10vh;
+}
+
+#img-qr{
+    width: 10vw;
+}
+
+.btn-primary{
+    background-color: #FA7606;
+    border: 0;
+}
+
+#task-div th {
+    padding: 10px;
+    background-color: #FA7606;
+    border: 1px solid #ccc;
+    color: white;
+    font-weight: bold;
+    width: auto;
+}
+
+#mess-div {
+    margin-top: 3.5em;
+    margin-right: 2%;
+    margin-left: 2%;
+    font-size: 20px;
+    padding-right: 5%;
+}
+
+#man-div {
+    position: absolute;
+    margin-top: 8%;
+    margin-left: 2%;
+}
+
+.bancali {
+    height: 75%;
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 4em;
+    margin-right: 5%;
+    margin-left: -25.5%;
+}
+
+.bancali table {
+    /* width: 95%; */
+    border-collapse: collapse;
+    background-color: #faf5f1;
+    /* margin-top: 100px; */
+}
+
+.bancali td {
+    padding: 10px;
+    text-align: left;
+}
+
+.bancali th {
+    padding: 10px;
+    background-color: #FA7606;
+    border: 1px solid #ccc;
+    color: white;
+    font-weight: bold;
+    width: auto;
+}

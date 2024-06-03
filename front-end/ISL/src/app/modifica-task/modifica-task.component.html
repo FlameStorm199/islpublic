@@ -1,0 +1,469 @@
+<div class="main-div" *ngIf="modifica == true">
+    Modifica o aggiungi task:
+    <form [formGroup]="formData" (ngSubmit)="$event.preventDefault(); modificaAggiungiTask();">
+        <div class="sinistra">
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="nome" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Nome" 
+                    autocomplete="off" 
+                    formControlName="nome"
+                    value="{{task.nome}}"
+                >
+                <label for="floatingInput">Nome</label>
+                <div *ngIf="formData.get('nome')?.invalid && (formData.get('nome')?.dirty || formData.get('nome')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('nome')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="descrizione" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Descrizione" 
+                    autocomplete="off" 
+                    formControlName="descrizione"
+                    value="{{task.descrizione}}"
+                >
+                <label for="floatingInput">Descrizione</label>
+                <div *ngIf="formData.get('descrizione')?.invalid && (formData.get('descrizione')?.dirty || formData.get('descrizione')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('descrizione')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="infoUlteriori" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Info ulteriori" 
+                    autocomplete="off" 
+                    formControlName="infoUlteriori"
+                    value="{{task.infoUlteriori}}"
+                >
+                <label for="floatingInput">Info ulteriori</label>
+                <div *ngIf="formData.get('infoUlteriori')?.invalid && (formData.get('infoUlteriori')?.dirty || formData.get('inforUlteriori')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('infoUlteriori')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <select name="tipologia" class="form-control" id="floatingInput" formControlName="tipologia">
+                    <option value="SPOSTAMENTO">SPOSTAMENTO</option>
+                    <option value="SPEDIZIONE">SPEDIZIONE</option>
+                    <option value="RICEZIONE">RICEZIONE</option>
+                    <option value="CONTEGGIO">CONTEGGIO</option>
+                </select>
+                <label for="floatingInput">Tipologia</label>
+                <div *ngIf="formData.get('tipologia')?.invalid && (formData.get('tipologia')?.dirty || formData.get('tipologia')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('tipologia')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <br>
+            <div class="form-floating mb-3">
+                <input 
+                    type="number" 
+                    name="urgenza" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Priorità" 
+                    autocomplete="off" 
+                    formControlName="urgenza"
+                    value="{{task.urgenza}}"
+                >
+                <label for="floatingInput">Urgenza</label>
+                <div *ngIf="formData.get('urgenza')?.invalid && (formData.get('urgenza')?.dirty || formData.get('urgenza')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('urgenza')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="destra">
+            <div class="form-floating mb-3">
+                <input 
+                    type="date" 
+                    name="dataOraScadenza" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    autocomplete="off" 
+                    formControlName="dataOraScadenza"
+                    value="{{task.dataOraScadenza}}"
+                >
+                <label for="floatingInput">Data di scadenza </label>
+                <div *ngIf="formData.get('dataOraScadenza')?.invalid && (formData.get('dataOraScadenza')?.dirty || formData.get('dataOraScadenza')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('dataOraScadenza')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <span>Posizione di provenienza: </span>
+            <br>
+            <div class="location">
+                <br>
+                <div class="form-floating mb-3">
+                    <select (click)="retrieveScaffaliProvenienza();" name="codiceAreaProvenienza" id="floatingInput" formControlName="codiceAreaProvenienza" class="form-control">
+                        <option *ngFor="let area of areas" value="{{area.codiceArea}}">{{area.codiceArea}}</option>
+                    </select>
+                    <label for="floatingInput">Codice area di provenienza</label>
+                    <div *ngIf="formData.get('codiceAreaProvenienza')?.invalid && (formData.get('codiceAreaProvenienza')?.dirty || formData.get('codiceAreaProvenienza')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codiceAreaProvenienza')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <select (click)="retrievePostiProvenienza();" name="codiceScaffaleProvenienza" id="floatingInput" formControlName="codiceScaffaleProvenienza" class="form-control">
+                        <option *ngFor="let scaffale of scaffaliProvenienza" value="{{scaffale.codiceScaffale}}">{{scaffale.codiceScaffale}}</option>
+                    </select>
+                    <label for="floatingInput">Codice scaffale di provenienza</label>
+                    <div *ngIf="formData.get('codiceScaffaleProvenienza')?.invalid && (formData.get('codiceScaffaleProvenienza')?.dirty || formData.get('codiceScaffaleProvenienza')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codiceScaffaleProvenienza')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <select name="codicePostoProvenienza" id="floatingInput" formControlName="codicePostoProvenienza" class="form-control">
+                        <option *ngFor="let posto of postiProvenienza" value="{{posto.codicePosto}}">{{posto.codicePosto}}</option>
+                    </select>
+                    <label for="floatingInput">Codice posto di provenienza</label>
+                    <div *ngIf="formData.get('codicePostoProvenienza')?.invalid && (formData.get('codicePostoProvenienza')?.dirty || formData.get('codicePostoProvenienza')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codicePostoProvenienza')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <span>Posizione di destinazione: </span>
+            <br>
+            <div class="location">
+                <br>
+                <div class="form-floating mb-3">
+                    <select (click)="retrieveScaffaliDestinazione();" name="codiceAreaDestinazione" id="floatingInput" formControlName="codiceAreaDestinazione" class="form-control">
+                        <option *ngFor="let area of areas" value="{{area.codiceArea}}">{{area.codiceArea}}</option>
+                    </select>
+                    <label for="floatingInput">Codice area di destinazione</label>
+                    <div *ngIf="formData.get('codiceAreaDestinazione')?.invalid && (formData.get('codiceAreaDestinazione')?.dirty || formData.get('codiceAreaDestinazione')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codiceAreaDestinazione')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <select (click)="retrievePostiDestinazione();" name="codiceScaffaleDestinazione" id="floatingInput" formControlName="codiceScaffaleDestinazione" class="form-control">
+                        <option *ngFor="let scaffale of scaffaliDestinazione" value="{{scaffale.codiceScaffale}}">{{scaffale.codiceScaffale}}</option>
+                    </select>
+                    <label for="floatingInput">Codice scaffale di destinazione</label>
+                    <div *ngIf="formData.get('codiceScaffaleDestinazione')?.invalid && (formData.get('codiceScaffaleDestinazione')?.dirty || formData.get('codiceScaffaleDestinazione')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codiceScaffaleDestinazione')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <select name="codicePostoDestinazione" id="floatingInput" formControlName="codicePostoDestinazione" class="form-control">
+                        <option *ngFor="let posto of postiDestinazione" value="{{posto.codicePosto}}">{{posto.codicePosto}}</option>
+                    </select>
+                    <label for="floatingInput">Codice posto di destinazione</label>
+                    <div *ngIf="formData.get('codicePostoDestinazione')?.invalid && (formData.get('codicePostoDestinazione')?.dirty || formData.get('codicePostoDestinazione')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codicePostoDestinazione')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <button 
+                    type="submit" 
+                    name="Modifica o aggiungi task"  
+                    class="btn btn-primary"
+                    [disabled]="formData.invalid"
+                >Modifica o aggiungi task</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="main-div" *ngIf="modifica == false">
+    Modifica o aggiungi task:
+    <form [formGroup]="formData" (ngSubmit)="$event.preventDefault(); modificaAggiungiTask();">
+        <div class="sinistra">
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="nome" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Nome" 
+                    autocomplete="off" 
+                    formControlName="nome"
+                >
+                <label for="floatingInput">Nome</label>
+                <div *ngIf="formData.get('nome')?.invalid && (formData.get('nome')?.dirty || formData.get('nome')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('nome')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="descrizione" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Descrizione" 
+                    autocomplete="off" 
+                    formControlName="descrizione"
+                >
+                <label for="floatingInput">Descrizione</label>
+                <div *ngIf="formData.get('descrizione')?.invalid && (formData.get('descrizione')?.dirty || formData.get('descrizione')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('descrizione')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="infoUlteriori" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Info ulteriori" 
+                    autocomplete="off" 
+                    formControlName="infoUlteriori"
+                >
+                <label for="floatingInput">Info ulteriori</label>
+                <div *ngIf="formData.get('infoUlteriori')?.invalid && (formData.get('infoUlteriori')?.dirty || formData.get('inforUlteriori')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('infoUlteriori')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <select name="tipologia" class="form-control" id="floatingInput" formControlName="tipologia">
+                    <option value="SPOSTAMENTO">SPOSTAMENTO</option>
+                    <option value="SPEDIZIONE">SPEDIZIONE</option>
+                    <option value="RICEZIONE">RICEZIONE</option>
+                    <option value="CONTEGGIO">CONTEGGIO</option>
+                </select>
+                <label for="floatingInput">Tipologia</label>
+                <div *ngIf="formData.get('tipologia')?.invalid && (formData.get('tipologia')?.dirty || formData.get('tipologia')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('tipologia')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <br>
+            <div class="form-floating mb-3">
+                <input 
+                    type="number" 
+                    name="urgenza" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Priorità" 
+                    autocomplete="off" 
+                    formControlName="urgenza"
+                >
+                <label for="floatingInput">Urgenza</label>
+                <div *ngIf="formData.get('urgenza')?.invalid && (formData.get('urgenza')?.dirty || formData.get('urgenza')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('urgenza')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="destra">
+            <div class="form-floating mb-3">
+                <input 
+                    type="date" 
+                    name="dataOraScadenza" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    autocomplete="off" 
+                    formControlName="dataOraScadenza"
+                >
+                <label for="floatingInput">Data di scadenza </label>
+                <div *ngIf="formData.get('dataOraScadenza')?.invalid && (formData.get('dataOraScadenza')?.dirty || formData.get('dataOraScadenza')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('dataOraScadenza')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <span>Posizione di provenienza: </span>
+            <br>
+            <div class="location">
+                <br>
+                <div class="form-floating mb-3">
+                    <select (click)="retrieveScaffaliProvenienza();" name="codiceAreaProvenienza" id="floatingInput" formControlName="codiceAreaProvenienza" class="form-control">
+                        <option *ngFor="let area of areas" value="{{area.codiceArea}}">{{area.codiceArea}}</option>
+                    </select>
+                    <label for="floatingInput">Codice area di provenienza</label>
+                    <div *ngIf="formData.get('codiceAreaProvenienza')?.invalid && (formData.get('codiceAreaProvenienza')?.dirty || formData.get('codiceAreaProvenienza')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codiceAreaProvenienza')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <select (click)="retrievePostiProvenienza();" name="codiceScaffaleProvenienza" id="floatingInput" formControlName="codiceScaffaleProvenienza" class="form-control">
+                        <option *ngFor="let scaffale of scaffaliProvenienza" value="{{scaffale.codiceScaffale}}">{{scaffale.codiceScaffale}}</option>
+                    </select>
+                    <label for="floatingInput">Codice scaffale di provenienza</label>
+                    <div *ngIf="formData.get('codiceScaffaleProvenienza')?.invalid && (formData.get('codiceScaffaleProvenienza')?.dirty || formData.get('codiceScaffaleProvenienza')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codiceScaffaleProvenienza')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <select name="codicePostoProvenienza" id="floatingInput" formControlName="codicePostoProvenienza" class="form-control">
+                        <option *ngFor="let posto of postiProvenienza" value="{{posto.codicePosto}}">{{posto.codicePosto}}</option>
+                    </select>
+                    <label for="floatingInput">Codice posto di provenienza</label>
+                    <div *ngIf="formData.get('codicePostoProvenienza')?.invalid && (formData.get('codicePostoProvenienza')?.dirty || formData.get('codicePostoProvenienza')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codicePostoProvenienza')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <span>Posizione di destinazione: </span>
+            <br>
+            <div class="location">
+                <br>
+                <div class="form-floating mb-3">
+                    <select (click)="retrieveScaffaliDestinazione();" name="codiceAreaDestinazione" id="floatingInput" formControlName="codiceAreaDestinazione" class="form-control">
+                        <option *ngFor="let area of areas" value="{{area.codiceArea}}">{{area.codiceArea}}</option>
+                    </select>
+                    <label for="floatingInput">Codice area di destinazione</label>
+                    <div *ngIf="formData.get('codiceAreaDestinazione')?.invalid && (formData.get('codiceAreaDestinazione')?.dirty || formData.get('codiceAreaDestinazione')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codiceAreaDestinazione')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <select (click)="retrievePostiDestinazione();" name="codiceScaffaleDestinazione" id="floatingInput" formControlName="codiceScaffaleDestinazione" class="form-control">
+                        <option *ngFor="let scaffale of scaffaliDestinazione" value="{{scaffale.codiceScaffale}}">{{scaffale.codiceScaffale}}</option>
+                    </select>
+                    <label for="floatingInput">Codice scaffale di destinazione</label>
+                    <div *ngIf="formData.get('codiceScaffaleDestinazione')?.invalid && (formData.get('codiceScaffaleDestinazione')?.dirty || formData.get('codiceScaffaleDestinazione')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codiceScaffaleDestinazione')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <select name="codicePostoDestinazione" id="floatingInput" formControlName="codicePostoDestinazione" class="form-control">
+                        <option *ngFor="let posto of postiDestinazione" value="{{posto.codicePosto}}">{{posto.codicePosto}}</option>
+                    </select>
+                    <label for="floatingInput">Codice posto di destinazione</label>
+                    <div *ngIf="formData.get('codicePostoDestinazione')?.invalid && (formData.get('codicePostoDestinazione')?.dirty || formData.get('codicePostoDestinazione')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('codicePostoDestinazione')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <button 
+                    type="submit" 
+                    name="Modifica o aggiungi task"  
+                    class="btn btn-primary"
+                    [disabled]="formData.invalid"
+                >Modifica o aggiungi task</button>
+            </div>
+        </div>
+    </form>
+</div>

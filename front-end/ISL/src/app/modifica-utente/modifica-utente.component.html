@@ -1,0 +1,359 @@
+<div class="main-div" *ngIf="modifica == true">
+    <div style="margin-left: 45px; font-size: 20px;"><br>Modifica utente:</div>
+    <form [formGroup]="formData" (ngSubmit)="$event.preventDefault(); modificaUtente();">
+        <div class="sinistra">
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="username" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Username" 
+                    autocomplete="off"
+                    formControlName="username"
+                    value="{{user.username}}"
+                >
+                <label for="floatingInput">Username</label>
+                <div *ngIf="formData.get('username')?.invalid && (formData.get('username')?.dirty || formData.get('username')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('username')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Password" 
+                    autocomplete="off" 
+                    formControlName="password"
+                    value="{{user.password}}"
+                >
+                <label for="floatingInput">Password</label>
+                <div *ngIf="formData.get('password')?.invalid && (formData.get('password')?.dirty || formData.get('password')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('password')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="nome" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Nome" 
+                    autocomplete="off" 
+                    formControlName="nome"
+                    value="{{user.nome}}"
+                >
+                <label for="floatingInput">Nome</label>
+                <div *ngIf="formData.get('nome')?.invalid && (formData.get('nome')?.dirty || formData.get('nome')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('nome')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="cognome" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Cognome" 
+                    autocomplete="off" 
+                    formControlName="cognome"
+                    value="{{user.cognome}}"
+                >
+                <label for="floatingInput">Cognome</label>
+                <div *ngIf="formData.get('cognome')?.invalid && (formData.get('cognome')?.dirty || formData.get('cognome')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('cognome')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="destra">
+            <div class="form-floating mb-3">
+                <input 
+                    type="date" 
+                    name="dataNascita" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    autocomplete="off" 
+                    formControlName="dataNascita"
+                    value="{{user.dataNascita}}"
+                >
+                <label for="floatingInput">Data di nascita </label>
+                <div *ngIf="formData.get('dataNascita')?.invalid && (formData.get('dataNascita')?.dirty || formData.get('dataNascita')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('dataNascita')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="luogoNascita" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Luogo di nascita" 
+                    autocomplete="off" 
+                    formControlName="luogoNascita"
+                    value="{{user.luogoNascita}}"
+                >
+                <label for="floatingInput">Luogo di nascita</label>
+                <div *ngIf="formData.get('luogoNascita')?.invalid && (formData.get('luogoNascita')?.dirty || formData.get('luogoNascita')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('luogoNascita')?.hasError('luogoNascita')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="tel" 
+                    name="telefono" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Telefono" 
+                    autocomplete="off" 
+                    formControlName="telefono"
+                    value="{{user.telefono}}"
+                >
+                <label for="floatingInput">Telefono</label>
+                <div *ngIf="formData.get('telefono')?.invalid && (formData.get('telefono')?.dirty || formData.get('telefono')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('telefono')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <span>Magazzino: </span>
+            <br>
+            <div class="location">
+                <br>
+                <div class="form-floating mb-3">
+                    <select name="magazzino" id="floatingInput" formControlName="magazzino" class="form-control">
+                        <option *ngFor="let magazzino of magazzini" value="{{magazzino.codiceMagazzino}}">{{magazzino.codiceMagazzino}}</option>
+                    </select>
+                    <label for="floatingInput">Codice magazzino</label>
+                    <div *ngIf="formData.get('magazzino')?.invalid && (formData.get('magazzino')?.dirty || formData.get('magazzino')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('magazzino')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <button 
+                    type="submit" 
+                    name="Modifica utente"  
+                    class="btn btn-primary"
+                    [disabled]="formData.invalid"
+                >Modifica utente</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="main-div" *ngIf="modifica == false">
+    <div style="margin-left: 45px; font-size: 20px;"><br>Aggiungi utente:</div>
+    <form [formGroup]="formData" (ngSubmit)="$event.preventDefault(); aggiungiUtente();">
+        <div class="sinistra">
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="username" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Username" 
+                    autocomplete="off" 
+                    formControlName="username"
+                >
+                <label for="floatingInput">Username</label>
+                <div *ngIf="formData.get('username')?.invalid && (formData.get('username')?.dirty || formData.get('username')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('username')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Password" 
+                    autocomplete="off" 
+                    formControlName="password"
+                >
+                <label for="floatingInput">Password</label>
+                <div *ngIf="formData.get('password')?.invalid && (formData.get('password')?.dirty || formData.get('password')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('password')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="nome" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Nome" 
+                    autocomplete="off" 
+                    formControlName="nome"
+                >
+                <label for="floatingInput">Nome</label>
+                <div *ngIf="formData.get('nome')?.invalid && (formData.get('nome')?.dirty || formData.get('nome')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('nome')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="cognome" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Cognome" 
+                    autocomplete="off" 
+                    formControlName="cognome"
+                >
+                <label for="floatingInput">Cognome</label>
+                <div *ngIf="formData.get('cognome')?.invalid && (formData.get('cognome')?.dirty || formData.get('cognome')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('cognome')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="destra">
+            <div class="form-floating mb-3">
+                <input 
+                    type="date" 
+                    name="dataNascita" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    autocomplete="off" 
+                    formControlName="dataNascita"
+                >
+                <label for="floatingInput">Data di nascita </label>
+                <div *ngIf="formData.get('dataNascita')?.invalid && (formData.get('dataNascita')?.dirty || formData.get('dataNascita')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('dataNascita')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    name="luogoNascita" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Luogo di nascita" 
+                    autocomplete="off" 
+                    formControlName="luogoNascita"
+                >
+                <label for="floatingInput">Luogo di nascita</label>
+                <div *ngIf="formData.get('luogoNascita')?.invalid && (formData.get('luogoNascita')?.dirty || formData.get('luogoNascita')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('luogoNascita')?.hasError('luogoNascita')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input 
+                    type="tel" 
+                    name="telefono" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Telefono" 
+                    autocomplete="off" 
+                    formControlName="telefono"
+                >
+                <label for="floatingInput">Telefono</label>
+                <div *ngIf="formData.get('telefono')?.invalid && (formData.get('telefono')?.dirty || formData.get('telefono')?.touched)">
+                    <small 
+                        class="text-danger"
+                        *ngIf="formData.get('telefono')?.hasError('required')" 
+                    >
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <span>Magazzino: </span>
+            <br>
+            <div class="location">
+                <br>
+                <div class="form-floating mb-3">
+                    <select name="magazzino" id="floatingInput" formControlName="magazzino" class="form-control">
+                        <option *ngFor="let magazzino of magazzini" value="{{magazzino.codiceMagazzino}}">{{magazzino.codiceMagazzino}}</option>
+                    </select>
+                    <label for="floatingInput">Codice magazzino</label>
+                    <div *ngIf="formData.get('magazzino')?.invalid && (formData.get('magazzino')?.dirty || formData.get('magazzino')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('magazzino')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <button 
+                    type="submit" 
+                    name="Aggiungi utente"  
+                    class="btn btn-primary"
+                    [disabled]="formData.invalid"
+                >Aggiungi utente</button>
+            </div>
+        </div>
+    </form>
+</div>

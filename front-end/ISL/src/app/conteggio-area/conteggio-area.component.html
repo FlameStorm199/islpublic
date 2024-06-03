@@ -1,0 +1,61 @@
+<div class="main-div">
+    <div id="container">
+    <div *ngIf="this.task_id != -1">
+        Secondo la task che hai selezionato, devi effettuare il controllo inventario dell'area
+        {{this.task.codiceAreaProvenienza}}.
+    </div>
+    <div *ngIf="this.task_id == -1" >
+        <div id="title">Conteggio manuale</div>
+        Stai effettuando un conteggio materiali manuale.
+    </div>
+    </div>
+    <div class='inserimento' *ngIf="this.isStarted() == false">
+        <br>
+        Scannerizza il codice QR dell'area di provenienza per cominciare, oppure seleziona l'area manualmente:
+        <br>
+        <!-- <qrcode [qrdata]="QrString" [width]="256" [errorCorrectionLevel]="'M'">
+            
+        </qrcode> -->
+        <img id="img-qr" src="assets/img/qr.png" alt=""><br><br>
+        <div [formGroup]="formData" *ngIf="this.task_id == -1" >
+            Seleziona un'area di provenienza:
+            <select (click)="gestisciScelta();" formControlName="scelta" name="" id="">
+                <option *ngFor="let area of areas" value="{{area.codiceArea}}">{{area.codiceArea}}</option>
+            </select>
+        </div>
+        <br>
+        <input class="btn btn-primary" type="button" value="Comincia il conteggio"
+            (click)="startConteggio();" [disabled]="this.area == null && task_id == -1">
+    </div>
+    <div class="bancali" *ngIf="this.isStarted() == true">
+        <p>Seleziona i bancali conteggiati. I bancali non selezionati verranno rimossi.</p>
+        <form action="" method="post">
+            <table [formGroup]="formDataBancali">
+                <tr>
+                    <th>SELEZIONA</th>
+                    <th>NUMERO SERIALE</th>
+                    <th>POSTO</th>
+                    <th>LOTTO</th>
+                    <th>SCADENZA</th>
+                </tr>
+                <tr *ngFor="let bancale of bancali">
+                    <td><input 
+                        type="checkbox" 
+                        name="bancali" 
+                        id="" 
+                        class="form-check-input mb-3" 
+                        formControlName="{{bancale.numeroSeriale}}"
+                        (change)="search(bancale, $event)" /></td>
+                    <td [routerLink]="['/bancale', bancale.numeroSeriale]">{{bancale.numeroSeriale}}</td>
+                    <td [routerLink]="['/bancale', bancale.numeroSeriale]">{{bancale.codiceMagazzino}}:{{bancale.codiceArea}}:{{bancale.codiceScaffale}}:{{bancale.codicePosto}}
+                    </td>
+                    <td [routerLink]="['/bancale', bancale.numeroSeriale]">{{bancale.numeroLotto}}</td>
+                    <td [routerLink]="['/bancale', bancale.numeroSeriale]">{{bancale.dataScadenza | date : 'dd/MM/yyyy hh:mm'}}</td>
+                </tr>
+            </table>
+            <br>
+            <input class="btn btn-primary" type="button" value="Termina il conteggio"
+                (click)="completaConteggio();">
+        </form>
+    </div>
+</div>

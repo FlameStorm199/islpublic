@@ -1,0 +1,127 @@
+<div>
+ <nav class="navbar bg-color">
+    <a class="navbar-brand" href="#">
+        <img src="assets/img/nav-logo-removebg.png" id="logo-img" alt="">
+    </a>
+    <div *ngIf="tokenService.isLogged()">
+      <div class="navigation-card">
+        <a href="#" class="tab" (click)="$event.preventDefault(); naviga('home');">
+          <svg
+            class="svgIcon"
+            viewBox="0 0 104 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M100.5 40.75V96.5H66V68.5V65H62.5H43H39.5V68.5V96.5H3.5V40.75L52 4.375L100.5 40.75Z"
+              stroke="black"
+              stroke-width="7"
+            ></path>
+          </svg>
+        </a>
+
+        <a href="#" class="tab" (click)="$event.preventDefault(); apriAreaUtente();">
+          <svg
+            width="104"
+            height="100"
+            viewBox="0 0 104 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="21.5"
+              y="3.5"
+              width="60"
+              height="60"
+              rx="30"
+              stroke="black"
+              stroke-width="7"
+            ></rect>
+            <g clip-path="url(#clip0_41_27)">
+              <mask
+                id="mask0_41_27"
+                style="mask-type:luminance"
+                maskUnits="userSpaceOnUse"
+                x="0"
+                y="61"
+                width="104"
+                height="52"
+              >
+                <path
+                  d="M0 113C0 84.2812 23.4071 61 52.1259 61C80.706 61 104 84.4199 104 113H0Z"
+                  fill="white"
+                ></path>
+              </mask>
+              <g mask="url(#mask0_41_27)">
+                <path
+                  d="M-7 113C-7 80.4152 19.4152 54 52 54H52.2512C84.6973 54 111 80.3027 111 112.749H97C97 88.0347 76.9653 68 52.2512 68H52C27.1472 68 7 88.1472 7 113H-7ZM-7 113C-7 80.4152 19.4152 54 52 54V68C27.1472 68 7 88.1472 7 113H-7ZM52.2512 54C84.6973 54 111 80.3027 111 112.749V113H97V112.749C97 88.0347 76.9653 68 52.2512 68V54Z"
+                  fill="black"
+                ></path>
+              </g>
+            </g>
+            <defs>
+              <clipPath id="clip0_41_27">
+                <rect
+                  width="104"
+                  height="39"
+                  fill="white"
+                  transform="translate(0 61)"
+                ></rect>
+              </clipPath>
+            </defs>
+          </svg>
+        </a>
+
+        <a href="#" class="tab" (click)="$event.preventDefault(); naviga('search');">
+          <svg
+            width="101"
+            height="114"
+            viewBox="0 0 101 114"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="46.1726"
+              cy="46.1727"
+              r="29.5497"
+              transform="rotate(36.0692 46.1726 46.1727)"
+              stroke="black"
+              stroke-width="7"
+            ></circle>
+            <line
+              x1="61.7089"
+              y1="67.7837"
+              x2="97.7088"
+              y2="111.784"
+              stroke="black"
+              stroke-width="7"
+            ></line>
+          </svg>
+        </a>
+      </div>
+      <div class="areaAdmin" *ngIf="tokenService.isAdmin()" (click)="$event.preventDefault(); naviga('admin')">
+        <button class="button">
+          <svg
+            class="svg-icon"
+            fill="none"
+            height="20"
+            viewBox="0 0 20 20"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g stroke="white" stroke-linecap="round" stroke-width="1.5">
+              <circle cx="10" cy="10" r="2.5"></circle>
+              <path
+                clip-rule="evenodd"
+                d="m8.39079 2.80235c.53842-1.51424 2.67991-1.51424 3.21831-.00001.3392.95358 1.4284 1.40477 2.3425.97027 1.4514-.68995 2.9657.82427 2.2758 2.27575-.4345.91407.0166 2.00334.9702 2.34248 1.5143.53842 1.5143 2.67996 0 3.21836-.9536.3391-1.4047 1.4284-.9702 2.3425.6899 1.4514-.8244 2.9656-2.2758 2.2757-.9141-.4345-2.0033.0167-2.3425.9703-.5384 1.5142-2.67989 1.5142-3.21831 0-.33914-.9536-1.4284-1.4048-2.34247-.9703-1.45148.6899-2.96571-.8243-2.27575-2.2757.43449-.9141-.01669-2.0034-.97028-2.3425-1.51422-.5384-1.51422-2.67994.00001-3.21836.95358-.33914 1.40476-1.42841.97027-2.34248-.68996-1.45148.82427-2.9657 2.27575-2.27575.91407.4345 2.00333-.01669 2.34247-.97026z"
+                fill-rule="evenodd"
+              ></path>
+            </g>
+          </svg>
+          <span class="lable">Admin</span>
+        </button>
+        
+      </div>
+    </div>
+  </nav>
+</div>

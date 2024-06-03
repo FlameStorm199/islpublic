@@ -1,0 +1,43 @@
+<div class="main-div">
+    <div class="dettagli">
+        <span id="dettagli_titolo">Dettagli dello scaffale:</span> <br>
+        <table id="tabella_dettagli">
+            <tr>
+                <td class="colonna1">Codice magazzino:</td>
+                <td class="colonna2">{{scaffale.codiceMagazzino}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Codice area:</td>
+                <td class="colonna2">{{scaffale.codiceArea}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Codice scaffale:</td>
+                <td class="colonna2">{{scaffale.codiceScaffale}}</td>
+            </tr>
+        </table>
+        <br>
+    </div>
+    <div class="bancali">
+        <div id="titolo_bancali">Posti e bancali nello scaffale:</div><br>
+        <div class="task-div">
+            <table>
+                <tr>
+                    <th>CODICE POSTO</th>
+                    <th>CARICO SPECIALE</th>
+                    <th>MAX ALTEZZA</th>
+                    <th>MAX LUNGHEZZA</th>
+                    <th>MAX LARGHEZZA</th>
+                    <th>MAX PESO</th>
+                </tr>
+                <tr *ngFor="let posto of posti" [routerLink]="['/posto', posto.codiceArea, posto.codiceScaffale, posto.codicePosto]">
+                    <td>{{posto.codicePosto}}</td>
+                    <td>{{posto.caricoSpeciale}}</td>
+                    <td>{{posto.maxAltezza}}</td>
+                    <td>{{posto.maxLunghezza}}</td>
+                    <td>{{posto.maxLarghezza}}</td>
+                    <td>{{posto.maxPeso}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

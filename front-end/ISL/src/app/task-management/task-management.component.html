@@ -1,0 +1,44 @@
+<div class="main-div">
+    <div id="mess-div">
+      <div style="font-size: 30; font-weight: bold;">Gestione task</div>
+        Ricerca una task:
+    </div>
+    <div id="man-div">
+        <div class="form-floating mb-3" [formGroup]="formData">
+            <input 
+                    type="text" 
+                    name="cerca" 
+                    id="floatingInput" 
+                    class="form-control" 
+                    placeholder="Ricerca una task..." 
+                    autocomplete="off" 
+                    formControlName="cerca"
+                    (keyup)="filterTasks()"
+                >
+        </div>
+        <div>
+            <input type="button" id="add" value="Crea task" (click)="creaTask()"/>
+        </div>
+    </div>
+    <div id="task-div">
+        <table>
+          <tr>
+            <th>ID TASK</th>
+            <th>NOME</th>
+            <th>TIPOLOGIA</th>
+            <th>LOCATION</th>
+            <th>PRIORITA' E SCADENZA</th>
+            <th>AZIONI</th>
+          </tr>
+          <tr *ngFor="let task of filteredTasks">
+            <td [routerLink]="['/task', task.id]">{{task.id}}</td>
+            <td [routerLink]="['/task', task.id]">{{task.nome}}</td>
+            <td [routerLink]="['/task', task.id]">{{task.tipologia}}</td>
+            <td [routerLink]="['/task', task.id]">{{task.codiceMagazzinoProvenienza}}:{{task.codiceAreaProvenienza}}:{{task.codiceScaffaleProvenienza}}:{{task.codicePostoProvenienza}}</td>
+            <td [routerLink]="['/task', task.id]">Priorità: {{task.urgenza}} <br> Data di scadenza: {{task.dataOraScadenza | date : 'dd/MM/yyyy hh:mm:ss'}}</td>
+            <td><input type="button" value="⠀⠀" class="modifica" (click)="modificaTask(task.id)"/>
+            <input type="button" value="⠀⠀" class="rimuovi" (click)="rimuoviTask(task.id)"/></td>
+          </tr>
+        </table>
+      </div>
+</div>

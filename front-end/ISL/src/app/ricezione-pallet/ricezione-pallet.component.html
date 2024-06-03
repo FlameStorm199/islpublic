@@ -1,0 +1,23 @@
+<div class="main-div">
+    <div id="container">
+    <div id="title">Inserimento automatico</div><br>
+    <div *ngIf="this.task_id != -1">
+        Secondo la task che hai selezionato, devi inserire uno o più bancali nell'area
+        {{this.task.codiceAreaProvenienza}}.
+    </div>
+    <div *ngIf="this.task_id == -1" >
+        Stai inserendo uno o più bancali in maniera manuale.
+    </div>
+    <div class='inserimento'>
+        Scannerizza il codice QR dell'area per cominciare:
+        <br>
+        <br>
+        <!-- <qrcode [qrdata]="QrString" [width]="256" [errorCorrectionLevel]="'M'">
+            
+        </qrcode> -->
+        <img id="img-qr" src="assets/img/qr.png"/><br><br>
+        <input class="btn btn-primary" type="button" value="Comincia l'inserimento"
+            [routerLink]="['inserimento']">
+        </div>
+    </div>
+</div>

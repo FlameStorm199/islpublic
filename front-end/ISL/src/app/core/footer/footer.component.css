@@ -1,0 +1,74 @@
+.footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4eae1;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 8vh;
+    padding: 0 0.7vw !important;
+    margin-bottom: 0px;
+    color: white;
+}
+
+.text{
+    position: absolute;
+    right: 40%;
+    bottom: 4%;
+}
+
+#logo-img {
+  margin-left: 1vw;
+    width: 12vw;
+    height: auto;
+    filter: brightness(0.4);
+}
+.instagramSvg {
+  filter: brightness(0.4);
+}
+.socialContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #f4eae1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+}
+
+.containerOne:hover {
+  background-color: #f4eae1;
+  transition-duration: 0.3s;
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+.socialSvg {
+  width: 30px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

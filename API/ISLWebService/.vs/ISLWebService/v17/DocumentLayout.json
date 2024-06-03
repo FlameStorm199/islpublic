@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Erik\\isl\\isl\\API\\ISLWebService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{11D5D29C-545D-468B-9BFE-3ABA751D8326}|ISLWebService\\ISLWebService.csproj|c:\\users\\erik\\isl\\isl\\api\\islwebservice\\islwebservice\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11D5D29C-545D-468B-9BFE-3ABA751D8326}|ISLWebService\\ISLWebService.csproj|solutionrelative:islwebservice\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11D5D29C-545D-468B-9BFE-3ABA751D8326}|ISLWebService\\ISLWebService.csproj|c:\\users\\erik\\isl\\isl\\api\\islwebservice\\islwebservice\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11D5D29C-545D-468B-9BFE-3ABA751D8326}|ISLWebService\\ISLWebService.csproj|solutionrelative:islwebservice\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11D5D29C-545D-468B-9BFE-3ABA751D8326}|ISLWebService\\ISLWebService.csproj|c:\\users\\erik\\isl\\isl\\api\\islwebservice\\islwebservice\\controllers\\utenticontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11D5D29C-545D-468B-9BFE-3ABA751D8326}|ISLWebService\\ISLWebService.csproj|solutionrelative:islwebservice\\controllers\\utenticontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "C:\\Users\\Erik\\isl\\isl\\API\\ISLWebService\\ISLWebService\\Security\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "ISLWebService\\Security\\PasswordHasher.cs",
+              "ToolTip": "C:\\Users\\Erik\\isl\\isl\\API\\ISLWebService\\ISLWebService\\Security\\PasswordHasher.cs",
+              "RelativeToolTip": "ISLWebService\\Security\\PasswordHasher.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T13:05:59.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TaskController.cs",
+              "DocumentMoniker": "C:\\Users\\Erik\\isl\\isl\\API\\ISLWebService\\ISLWebService\\Controllers\\TaskController.cs",
+              "RelativeDocumentMoniker": "ISLWebService\\Controllers\\TaskController.cs",
+              "ToolTip": "C:\\Users\\Erik\\isl\\isl\\API\\ISLWebService\\ISLWebService\\Controllers\\TaskController.cs",
+              "RelativeToolTip": "ISLWebService\\Controllers\\TaskController.cs",
+              "ViewState": "AQIAAJ4AAAAAAAAAAAAIwLYAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T13:05:59.966Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UtentiController.cs",
+              "DocumentMoniker": "C:\\Users\\Erik\\isl\\isl\\API\\ISLWebService\\ISLWebService\\Controllers\\UtentiController.cs",
+              "RelativeDocumentMoniker": "ISLWebService\\Controllers\\UtentiController.cs",
+              "ToolTip": "C:\\Users\\Erik\\isl\\isl\\API\\ISLWebService\\ISLWebService\\Controllers\\UtentiController.cs",
+              "RelativeToolTip": "ISLWebService\\Controllers\\UtentiController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T13:05:59.974Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

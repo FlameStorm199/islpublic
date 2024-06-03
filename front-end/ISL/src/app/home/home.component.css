@@ -1,0 +1,93 @@
+.main-div {
+    display: flex;
+    flex-direction: row;
+    height: 84vh;
+    background-image: "";
+    background-color: #f4eae1;
+    font-family: 'Rubik' !important;
+}
+
+#functions-div {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-areas:
+        'ricezione-materiale spedizione-materiale'
+        'conteggio-materiale spostamento-materiale';
+    /* margin-left: 1%; */
+    height: 75%;
+    width: 400px;
+    margin-top: 5em;
+    margin-left: -8em;
+}
+
+.materiale {
+    background-color: #fbf3ec;
+    border: 1px black solid;
+    border-radius: 20px;
+    display: flex;
+    height: 175px;
+    width: 250px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 15px;
+    transition: 200ms;
+}
+
+.materiale:hover {
+    background-color: #e7730e;
+    transform: scale(1.03);
+    color: black;
+    /* mettere filter: invert(100%); SOLO allimmagine con classe .icon-materiale */
+}
+
+.icon-materiale {
+    width: 100px;
+    height: 100px;
+    filter: brightness(0);
+}
+
+#task-div {
+    height: 74%;
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 4.8em;
+    margin-right: 2em;
+    margin-left: -8em;
+}
+
+#task-div table {
+    /* width: 95%; */
+    width: 98%;
+    border-collapse: collapse;
+    background-color: #fbf3ec;
+    /* margin-top: 100px; */
+}
+
+#task-div td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+#task-div th {
+    padding: 10px;
+    background-color: #FA7606;
+    border: 1px solid #ccc;
+    color: white;
+    font-weight: bold;
+    width: auto;
+}
+#task-div::-webkit-scrollbar {
+    width: 12px;
+}
+#task-div::-webkit-scrollbar-track {
+    background-color: #d9d4cf;
+    border-radius: 10px;
+}
+#task-div::-webkit-scrollbar-thumb {
+    background-color: #FA7606;
+    border-radius: 10px;
+}

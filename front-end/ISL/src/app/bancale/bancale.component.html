@@ -1,0 +1,64 @@
+<div class="main-div">
+    <div class="dettagli">
+        <span id="dettagli_titolo">Dettagli del bancale:</span> <br>
+        <table id="tabella_dettagli">
+            <tr>
+                <td class="colonna1">Numero seriale:</td>
+                <td class="colonna2">{{bancale.numeroSeriale}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Altezza:</td>
+                <td class="colonna2">{{bancale.altezza}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Carico speciale:</td>
+                <td class="colonna2">{{bancale.caricoSpeciale}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Data scadenza:</td>
+                <td class="colonna2">{{bancale.dataScadenza | date: 'dd/MM/yyyy hh:mm'}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Fragile:</td>
+                <td class="colonna2">{{bancale.fragile}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Larghezza:</td>
+                <td class="colonna2">{{bancale.larghezza}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Lunghezza:</td>
+                <td class="colonna2">{{bancale.lunghezza}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Mittente:</td>
+                <td class="colonna2">{{bancale.mittente}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Numero lotto:</td>
+                <td class="colonna2">
+                    {{bancale.numeroLotto}}
+                </td>
+            </tr>
+            <tr>
+                <td class="colonna1">Peso:</td>
+                <td class="colonna2">
+                    {{bancale.peso}}
+                </td>
+            </tr>
+            <tr>
+                <td class="colonna1">Tipologia carico:</td>
+                <td class="colonna2">
+                    {{bancale.tipologiaCarico}}
+                </td>
+            </tr>
+            <tr>
+                <td class="colonna1">Location:</td>
+                <td class="colonna2">
+                    {{bancale.codiceMagazzino}}:{{bancale.codiceArea}}:{{bancale.codiceScaffale}}:{{bancale.codicePosto}}
+                </td>
+            </tr>
+        </table>
+        <br>
+    </div>
+</div>

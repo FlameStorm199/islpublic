@@ -1,0 +1,15 @@
+<div class="main-div">
+    <div class="icon">
+        <img id="imgprof" src="assets/img/free-user-icon-3296-thumb.png" alt="">
+    </div>
+    <div *ngIf="utente != null && utente != undefined" class="info">
+        <p><span style="font-size: 40px;">Informazione utente</span></p>
+        <p><b>Nome:</b> {{utente.nome}}</p>
+        <p><b>Cognome:</b> {{utente.cognome}}</p>
+        <p><b>Data di nascita:</b> {{utente.dataNascita | date : 'dd/MM/yyyy'}}</p>
+        <p><b>Luogo di nascita:</b> {{utente.luogoNascita}}</p>
+        <p><b>Telefono:</b> {{utente.telefono}}</p>
+        <p><b>Magazzino:</b> {{utente.magazzino}}</p>
+        <button *ngIf="(this.username == this.utente.username)" class="btn btn-primary" (click)="logout();">Logout</button>
+    </div>
+</div>

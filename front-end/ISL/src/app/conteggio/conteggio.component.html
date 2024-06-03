@@ -1,0 +1,31 @@
+<div class="main-div">
+    <div id="mess-div">
+      <div id="title">Conteggio materiali</div>
+        Vuoi effettuare il conteggio dei materiali
+        <br> partendo da una task o manualmente?
+        <br>
+    </div>
+    <div id="man-div">
+        <div class="form-floating mb-3">
+            <input class="btn btn-primary" type="button" value="Conteggio manuale" [routerLink]="['pallet', 'custom']">
+        </div>
+    </div>
+    <div id="task-div">
+        <table>
+          <tr>
+            <th>SELEZIONA</th>
+            <th>ID TASK</th>
+            <th>TIPOLOGIA</th>
+            <th>LOCATION</th>
+            <th>PRIORITA' E SCADENZA</th>
+          </tr>
+          <tr *ngFor="let task of tasks" [routerLink]="['/task', task.id]">
+            <td><input class="btn btn-primary" type="button" value="Seleziona task" [routerLink]="['pallet', task.id]"></td>
+            <td>{{task.id}}</td>
+            <td>{{task.tipologia}}</td>
+            <td>{{task.codiceMagazzinoProvenienza}}:{{task.codiceAreaProvenienza}}:{{task.codiceScaffaleProvenienza}}:{{task.codicePostoProvenienza}}</td>
+            <td>Priorità: {{task.urgenza}} <br> Data di scadenza: {{task.dataOraScadenza | date : 'dd/MM/yyyy hh:mm:ss'}}</td>
+          </tr>
+        </table>
+      </div>
+</div>

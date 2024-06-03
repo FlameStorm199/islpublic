@@ -1,0 +1,26 @@
+.main-div {
+    display: flex;
+    flex-direction: row;
+    height: 84vh;
+    background-image: "";
+    background-color: #f4eae1;
+    font-family: 'Rubik' !important;
+}
+
+.icon{
+    left: 50%;
+}
+
+#imgprof{
+    width: 400px;
+    height: 400px;
+    margin-top: 30%;
+    margin-left: 25%;
+}
+
+.info{
+    position: absolute;
+    top: 26%;
+    left: 40%;
+}
+

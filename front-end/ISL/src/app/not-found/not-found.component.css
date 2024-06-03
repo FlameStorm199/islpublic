@@ -1,0 +1,32 @@
+.align {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 2vh;
+    align-items: center;
+    max-width: 100% !important;
+}
+
+#div-login {
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    width: fit-content;
+    max-width: fit-content;
+    padding: 3vh 5vh 5vh 5vh;
+    background-color: transparent;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: row;
+    height: 84vh;
+    background-image: "";
+    background-color: #f4eae1;
+    font-family: 'Rubik' !important;
+}
+
+#nf-logo{
+    margin-top: 10vh;
+    filter: saturate(8);
+}

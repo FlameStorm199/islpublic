@@ -1,0 +1,56 @@
+<div class="main-div">
+    <div class="bancali">
+        <div *ngIf="this.task_id != -1" id="titolo_bancali">Bancali da rimuovere:</div>
+        <div *ngIf="this.task_id == -1" id="titolo_bancali">Bancali nel database:</div><br>
+        <div *ngIf="this.task_id != -1" class="task-div">
+            <table>
+                <tr>
+                    <th>NUMERO SERIALE</th>
+                    <th>POSTO</th>
+                    <th>LOTTO</th>
+                    <th>SCADENZA</th>
+                </tr>
+                <tr *ngFor="let bancale of this.spedizioneService.getPallets()" [routerLink]="['/bancale', bancale.bancale.numeroSeriale]">
+                    <td>{{bancale.bancale.numeroSeriale}}</td>
+                    <td>{{bancale.bancale.codiceMagazzino}}:{{bancale.bancale.codiceArea}}:{{bancale.bancale.codiceScaffale}}:{{bancale.bancale.codicePosto}}
+                    </td>
+                    <td>{{bancale.bancale.numeroLotto}}</td>
+                    <td>{{bancale.bancale.dataScadenza | date : 'dd/MM/yyyy hh:mm'}}</td>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="this.task_id == -1" class="task-div">
+            <table>
+                <tr>
+                    <th>NUMERO SERIALE</th>
+                    <th>POSTO</th>
+                    <th>LOTTO</th>
+                    <th>SCADENZA</th>
+                </tr>
+                <tr *ngFor="let bancale of this.spedizioneService.getPallets()" [routerLink]="['/bancale', bancale.numeroSeriale]">
+                    <td>{{bancale.numeroSeriale}}</td>
+                    <td>{{bancale.codiceMagazzino}}:{{bancale.codiceArea}}:{{bancale.codiceScaffale}}:{{bancale.codicePosto}}
+                    </td>
+                    <td>{{bancale.numeroLotto}}</td>
+                    <td>{{bancale.dataScadenza | date : 'dd/MM/yyyy hh:mm'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="scannerizza">
+        <p>Scannerizza il bancale da rimuovere,<br> oppure selezionalo manualmente: </p>
+        <div [formGroup]="formData">
+           <select *ngIf="this.task_id != -1" formControlName="scelta" name="" id="">
+                <option *ngFor="let bancale of this.spedizioneService.getPallets()" value="{{bancale.bancale.numeroSeriale}}">{{bancale.bancale.numeroSeriale}}</option>
+            </select>
+            <select *ngIf="this.task_id == -1" formControlName="scelta" name="" id="">
+                <option *ngFor="let bancale of this.spedizioneService.getPallets()" value="{{bancale.numeroSeriale}}">{{bancale.numeroSeriale}}</option>
+            </select>
+            <input *ngIf="this.task_id != -1" type="button" class="btn btn-primary" value="Rimuovi pallet" (click)="removePallet();" [disabled]="formData.invalid">
+            <input *ngIf="this.task_id == -1" type="button" class="btn btn-primary" value="Rimuovi pallet" (click)="removePalletCustom();" [disabled]="formData.invalid">
+            <br>
+            <br>
+            <input *ngIf="this.task_id == -1" type="button" class="btn btn-primary" value="Termina spedizione manuale" (click)="terminaSpedizioneManuale();">
+        </div>
+    </div>
+</div>

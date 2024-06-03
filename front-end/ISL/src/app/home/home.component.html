@@ -1,0 +1,38 @@
+<div class="main-div">
+    <div id="functions-div">
+        <div class="materiale" id="ricezione-materiale" (click)="effettuaOperazione('ricezione');">
+            <img class="icon-materiale" src="assets/img/home-ricezione.png" alt="">
+            RICEZIONE MATERIALE
+        </div>
+        <div class="materiale" id="spedizione-materiale" (click)="effettuaOperazione('spedizione');">
+            <img class="icon-materiale" src="assets/img/home-spedizione.png" alt="">
+            SPEDIZIONE MATERIALE
+        </div>
+        <div class="materiale" id="conteggio-materiale" (click)="effettuaOperazione('conteggio');">
+            <img class="icon-materiale" src="assets/img/home-conteggio.png" alt="">
+            CONTEGGIO MATERIALE
+        </div>
+        <div class="materiale" id="spostamento-materiale" (click)="effettuaOperazione('spostamento');">
+            <img class="icon-materiale" src="assets/img/home-spostamento.png" alt="">
+            SPOSTAMENTO MATERIALE
+        </div>
+    </div>
+    <div id="task-div">
+        <table>
+          <tr>
+            <th>ID TASK</th>
+            <th>NOME</th>
+            <th>TIPOLOGIA</th>
+            <th>LOCATION</th>
+            <th>PRIORITA' E SCADENZA</th>
+          </tr>
+          <tr *ngFor="let task of tasks" [routerLink]="['/task', task.id]">
+            <td>{{task.id}}</td>
+            <td>{{task.nome}}</td>
+            <td>{{task.tipologia}}</td>
+            <td>{{task.codiceMagazzinoProvenienza}}:{{task.codiceAreaProvenienza}}:{{task.codiceScaffaleProvenienza}}:{{task.codicePostoProvenienza}}</td>
+            <td>Priorità: {{task.urgenza}} <br> Data di scadenza: {{task.dataOraScadenza | date : 'dd/MM/yyyy hh:mm:ss'}}</td>
+          </tr>
+        </table>
+      </div>
+</div>

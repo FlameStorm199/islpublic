@@ -1,0 +1,72 @@
+<div class="main-div">
+    <div class="dettagli">
+        <span id="dettagli_titolo">Dettagli della task:</span> <br>
+        <table id="tabella_dettagli">
+            <tr>
+                <td class="colonna1">ID:</td>
+                <td class="colonna2">{{task.id}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Nome:</td>
+                <td class="colonna2">{{task.nome}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Descrizione:</td>
+                <td class="colonna2">{{task.descrizione}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Tipologia:</td>
+                <td class="colonna2">{{task.tipologia}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Status:</td>
+                <td class="colonna2">{{task.status}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Data e ora di scadenza:</td>
+                <td class="colonna2">{{task.dataOraScadenza | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Priorità:</td>
+                <td class="colonna2">{{task.urgenza}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Informazioni ulteriori:</td>
+                <td class="colonna2">{{task.infoUlteriori}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Provenienza:</td>
+                <td class="colonna2">
+                    {{task.codiceMagazzinoProvenienza}}:{{task.codiceAreaProvenienza}}:{{task.codiceScaffaleProvenienza}}:{{task.codicePostoProvenienza}}
+                </td>
+            </tr>
+            <tr>
+                <td class="colonna1">Destinazione:</td>
+                <td class="colonna2">
+                    {{task.codiceMagazzinoDestinazione}}:{{task.codiceAreaDestinazione}}:{{task.codiceScaffaleDestinazione}}:{{task.codicePostoDestinazione}}
+                </td>
+            </tr>
+        </table>
+        <br>
+    </div>
+    <div class="bancali">
+        <div id="titolo_bancali">Bancali a cui fa riferimento:</div><br>
+        <div class="task-div">
+            <table>
+                <tr>
+                    <th>NUMERO SERIALE</th>
+                    <th>POSTO</th>
+                    <th>LOTTO</th>
+                    <th>SCADENZA</th>
+                </tr>
+                <tr *ngFor="let bancale of task.bancaliTask" [routerLink]="['/bancale', bancale.bancale.numeroSeriale]">
+                    <td>{{bancale.bancale.numeroSeriale}}</td>
+                    <td>{{bancale.bancale.codiceMagazzino}}:{{bancale.bancale.codiceArea}}:{{bancale.bancale.codiceScaffale}}:{{bancale.bancale.codicePosto}}
+                    </td>
+                    <td>{{bancale.bancale.numeroLotto}}</td>
+                    <td>{{bancale.bancale.dataScadenza | date : 'dd/MM/yyyy hh:mm'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

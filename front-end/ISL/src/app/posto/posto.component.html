@@ -1,0 +1,69 @@
+<div class="main-div">
+    <div class="dettagli">
+        <span id="dettagli_titolo">Dettagli del posto:</span> <br>
+        <table id="tabella_dettagli">
+            <tr>
+                <td class="colonna1">Codice magazzino:</td>
+                <td class="colonna2">{{posto.codiceMagazzino}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Codice area:</td>
+                <td class="colonna2">{{posto.codiceArea}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Codice scaffale:</td>
+                <td class="colonna2">{{posto.codiceScaffale}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Codice posto:</td>
+                <td class="colonna2">{{posto.codicePosto}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Altezza massima:</td>
+                <td class="colonna2">{{posto.maxAltezza}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Lunghezza massima:</td>
+                <td class="colonna2">{{posto.maxLunghezza}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Larghezza massima:</td>
+                <td class="colonna2">{{posto.maxLarghezza}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Peso massimo:</td>
+                <td class="colonna2">{{posto.maxPeso}}</td>
+            </tr>
+            <tr>
+                <td class="colonna1">Adatto a carichi speciali:</td>
+                <td class="colonna2">{{posto.caricoSpeciale}}</td>
+            </tr>
+        </table>
+        <br>
+    </div>
+    <div class="bancali" *ngIf="this.bancale != null">
+        <div id="titolo_bancali">Il posto è occupato dal seguente bancale:</div><br>
+        <div class="task-div">
+            <table>
+                <tr>
+                    <th>NUMERO SERIALE</th>
+                    <th>TIPOLOGIA CARICO</th>
+                    <th>LOTTO</th>
+                    <th>SCADENZA</th>
+                </tr>
+                <tr [routerLink]="['/bancale', bancale.numeroSeriale]">
+                    <td>{{bancale.numeroSeriale}}</td>
+                    <td>{{bancale.tipologiaCarico}}
+                    </td>
+                    <td>{{bancale.numeroLotto}}</td>
+                    <td>{{bancale.dataScadenza | date : 'dd/MM/yyyy hh:mm'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="bancali" *ngIf="this.bancale == null">
+        <div class="titolo_bancali">
+            <p><b>Il posto è libero.</b></p>
+        </div>
+    </div>
+</div>

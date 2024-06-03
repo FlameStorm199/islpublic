@@ -1,0 +1,27 @@
+<div class="main-div">
+    <div style="font-size: 20px; margin-left: 40px; font-weight: bold;"><br>Hai inserito correttamente il pallet {{this.codiceBancale}}.</div>
+    <div class="bancali">
+        <div id="titolo_bancali">Questi sono i bancali che hai inserito fino ad ora:</div><br>
+        <div class="task-div">
+            <table>
+                <tr>
+                    <th>NUMERO SERIALE</th>
+                    <th>POSTO</th>
+                    <th>LOTTO</th>
+                    <th>SCADENZA</th>
+                </tr>
+                <tr *ngFor="let bancale of bancali" [routerLink]="['/bancale', bancale.numeroSeriale]">
+                    <td>{{bancale.NumeroSeriale}}</td>
+                    <td>{{bancale.CodiceMagazzino}}:{{bancale.CodiceArea}}:{{bancale.CodiceScaffale}}:{{bancale.CodicePosto}}
+                    </td>
+                    <td>{{bancale.NumeroLotto}}</td>
+                    <td>{{bancale.DataScadenza | date : 'dd/MM/yyyy hh:mm'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="bottoni">
+        <button name="ok" (click)="terminaRicezione()" class="btn btn-primary">Termina ricezione</button>
+        <button name="ok2" (click)="inserisciNuovoPallet()" class="btn btn-primary">Inserisci nuovo bancale</button>
+    </div>
+</div>

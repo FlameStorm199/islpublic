@@ -1,0 +1,102 @@
+<div class="main-div">
+    <div *ngIf="this.task_id != -1">
+        <div style="margin-left: 40px; font-weight: bold;"><br>Secondo la task che hai selezionato, devi spostare uno o più bancali dall'area
+        {{this.task.codiceAreaProvenienza}} all'area {{this.task.codiceAreaDestinazione}}.</div>
+    </div>
+    <div *ngIf="this.task_id == -1" >
+        <div style="margin-left: 40px; font-weight: bold;"><br>Stai spostando uno o più bancali in maniera manuale.</div>
+    </div>
+    <div class='inserimento' *ngIf="this.isStarted() == false">
+        <br>
+        Scannerizza il codice QR dell'area di provenienza per cominciare, oppure seleziona l'area manualmente:
+        <br>
+        <br>
+        <!-- <qrcode [qrdata]="QrString" [width]="256" [errorCorrectionLevel]="'M'">
+
+        </qrcode> -->
+        <img id="img-qr" src="assets/img/qr.png" alt=""><br><br>
+        <div [formGroup]="formData" *ngIf="this.task_id == -1" >
+            Seleziona un'area di provenienza:
+            <select (click)="gestisciScelta();" formControlName="scelta" name="" id="">
+                <option *ngFor="let area of areas" value="{{area.codiceArea}}">{{area.codiceArea}}</option>
+            </select>
+        </div><br>
+        <input class="btn btn-primary" type="button" value="Comincia lo spostamento"
+            (click)="startSpostamento();" [disabled]="this.area == null && task_id == -1">
+    </div>
+    <div class="bancali" *ngIf="this.isStarted() == true">
+        <form action="" method="post">
+            <table [formGroup]="formDataBancali" *ngIf="this.task_id == -1">
+                <tr>
+                    <th>SELEZIONA</th>
+                    <th>NUMERO SERIALE</th>
+                    <th>POSTO</th>
+                    <th>LOTTO</th>
+                    <th>SCADENZA</th>
+                    <th>AREA DEST.</th>
+                    <th>SCAFFALE DEST.</th>
+                    <th>POSTO DEST.</th>
+                </tr>
+                <tr *ngFor="let bancale of bancali">
+                    <td><input 
+                        type="checkbox" 
+                        name="bancali" 
+                        id="" 
+                        class="form-check-input mb-3" 
+                        formControlName="{{bancale.numeroSeriale}}"
+                        (change)="search(bancale, $event)" /></td>
+                    <td [routerLink]="['/bancale', bancale.numeroSeriale]">{{bancale.numeroSeriale}}</td>
+                    <td [routerLink]="['/bancale', bancale.numeroSeriale]">{{bancale.codiceMagazzino}}:{{bancale.codiceArea}}:{{bancale.codiceScaffale}}:{{bancale.codicePosto}}
+                    </td>
+                    <td [routerLink]="['/bancale', bancale.numeroSeriale]">{{bancale.numeroLotto}}</td>
+                    <td [routerLink]="['/bancale', bancale.numeroSeriale]">{{bancale.dataScadenza | date : 'dd/MM/yyyy hh:mm'}}</td>
+                    <td>
+                        <select (click)="retrieveScaffali(bancale.numeroSeriale);" name="codice_area" id="floatingInput" formControlName="codice_area/{{bancale.numeroSeriale}}" class="form-control">
+                            <option *ngFor="let area of areas" value="{{area.codiceArea}}">{{area.codiceArea}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select (click)="retrievePosti(bancale.numeroSeriale);" name="codice_scaffale" id="floatingInput" formControlName="codice_scaffale/{{bancale.numeroSeriale}}" class="form-control">
+                            <option *ngFor="let scaffale of scaffali[bancale.numeroSeriale]" value="{{scaffale.codiceScaffale}}">{{scaffale.codiceScaffale}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="codice_scaffale" id="floatingInput" formControlName="codice_posto/{{bancale.numeroSeriale}}" class="form-control">
+                            <option *ngFor="let posto of posti[bancale.numeroSeriale]" value="{{posto.codicePosto}}">{{posto.codicePosto}}</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table [formGroup]="formDataBancali" *ngIf="this.task_id != -1">
+                <tr>
+                    <th>NUMERO SERIALE</th>
+                    <th>POSTO</th>
+                    <th>LOTTO</th>
+                    <th>SCADENZA</th>
+                    <th>SCAFFALE DEST.</th>
+                    <th>POSTO DEST.</th>
+                </tr>
+                <tr *ngFor="let bancale of bancali">
+                    <td [routerLink]="['/bancale', bancale.bancale.numeroSeriale]">{{bancale.bancale.numeroSeriale}}</td>
+                    <td [routerLink]="['/bancale', bancale.bancale.numeroSeriale]">{{bancale.bancale.codiceMagazzino}}:{{bancale.bancale.codiceArea}}:{{bancale.bancale.codiceScaffale}}:{{bancale.bancale.codicePosto}}
+                    </td>
+                    <td [routerLink]="['/bancale', bancale.bancale.numeroSeriale]">{{bancale.bancale.numeroLotto}}</td>
+                    <td [routerLink]="['/bancale', bancale.bancale.numeroSeriale]">{{bancale.bancale.dataScadenza | date : 'dd/MM/yyyy hh:mm'}}</td>
+                    <td>
+                        <select (click)="retrievePostiTask(bancale.bancale.numeroSeriale);" name="codice_scaffale" id="floatingInput" formControlName="codice_scaffale/{{bancale.bancale.numeroSeriale}}" class="form-control">
+                            <option *ngFor="let scaffale of scaffaliTask" value="{{scaffale.codiceScaffale}}">{{scaffale.codiceScaffale}}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="codice_scaffale" id="floatingInput" formControlName="codice_posto/{{bancale.bancale.numeroSeriale}}" class="form-control">
+                            <option *ngFor="let posto of posti[bancale.bancale.numeroSeriale]" value="{{posto.codicePosto}}">{{posto.codicePosto}}</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <input class="btn btn-primary" type="button" value="Esegui lo spostamento"
+                (click)="completaSpostamento();">
+        </form>
+    </div>
+</div>

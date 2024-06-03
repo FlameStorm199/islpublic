@@ -1,0 +1,67 @@
+<div class="login">
+    <div class="align">
+        <div id="div-login">
+            <div class="title-menu">Log in to ISL</div>
+            <br>
+            <form [formGroup]="formData" (ngSubmit)="$event.preventDefault(); tryLogin();">
+                <div class="form-floating mb-3">
+                    <input 
+                        type="text" 
+                        name="username" 
+                        id="floatingInput" 
+                        class="form-control" 
+                        placeholder="Username" 
+                        autocomplete="off" 
+                        formControlName="username"
+                    >
+                    <label for="floatingInput">Username</label>
+                    <div *ngIf="formData.get('username')?.invalid && (formData.get('username')?.dirty || formData.get('username')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('username')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-floating mb-3" id="passwordContainer">
+                    <input 
+                        type='{{showPassword.type}}' 
+                        name="password" 
+                        id="floatingPassword" 
+                        class="form-control" 
+                        placeholder="Password" 
+                        autocomplete="off" 
+                        formControlName="password"
+                    >
+                    <button id="showHidePasswordBtn" type="button" (click)="$event.preventDefault(); changePasswordVisibility();">
+                        <img src='{{ "assets/img/" + showPassword.img + ".png" }}' id="passwordImage" alt="">
+                    </button>
+                    <label for="floatingPassword">Password</label>
+                    <div *ngIf="formData.get('password')?.invalid && (formData.get('password')?.dirty || formData.get('password')?.touched)">
+                        <small 
+                            class="text-danger"
+                            *ngIf="formData.get('password')?.hasError('required')" 
+                        >
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <button 
+                        type="submit" 
+                        name="login"  
+                        class="btn btn-primary"
+                        [disabled]="formData.invalid"
+                    >Login</button>
+                </div>
+            </form>
+            <div class="alert alert-danger" role="alert" *ngIf="!authenticated">
+                {{errMsg}}
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="notlogged">
+                {{errMsg2}}
+            </div>
+        </div>
+    </div>
+</div>
